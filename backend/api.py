@@ -1,15 +1,16 @@
-from flask import Flask, request, jsonify, url_for
+# filepath: /Users/prashantgavit/Phoenix/PDF_merger/backend/api.py
+from flask import Flask, request, jsonify, url_for, render_template
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from PyPDF2 import PdfMerger
 from PIL import Image
 import os
 
-app = Flask(__name__, static_folder='frontend/static')  # Serve static files from 'frontend/static'
+app = Flask(__name__, static_folder='static')  # Serve static files from 'static'
 CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
-STATIC_FOLDER = 'frontend/static'
+STATIC_FOLDER = 'static'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(STATIC_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -18,6 +19,11 @@ ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/')
+def index():
+    """Serve the index.html file."""
+    return render_template('index.html')
 
 @app.route('/api/upload', methods=['POST'])
 def upload_files():

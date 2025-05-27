@@ -1,0 +1,24 @@
+<!-- filepath: /Users/prashantgavit/Phoenix/PDF_merger/backend/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF and JPG Uploader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- Link to external CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Upload PDF and JPG Files</h1>
+        <form id="uploadForm">
+            <div class="custom-file-input">
+                <button type="button">Choose Files</button>
+                <input type="file" id="fileInput" multiple accept=".pdf, .jpg, .jpeg, .png" />
+            </div>
+            <ul class="file-list" id="fileList"></ul>
+            <button type="button" id="uploadButton">Upload Files</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> <!-- Link to external JavaScript -->
+</body>
+</html>
